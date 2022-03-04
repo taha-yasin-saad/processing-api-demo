@@ -9,16 +9,12 @@ interface sharpResizeAtrs {
 }
 
 const sharpResizeImage = async (sharpAtrs: sharpResizeAtrs) => {
-  try {
-    await sharp(sharpAtrs.fullImagePath)
-      .resize(sharpAtrs.width, sharpAtrs.height)
-      .jpeg()
-      .toFile(sharpAtrs.resizedImagePath);
-    console.log(`${sharpAtrs.imageName} converted`);
-    return "";
-  } catch {
-    return "Image couldn't be resized";
-  }
+  await sharp(sharpAtrs.fullImagePath)
+    .resize(sharpAtrs.width, sharpAtrs.height)
+    .jpeg()
+    .toFile(sharpAtrs.resizedImagePath);
+  console.log(`${sharpAtrs.imageName} converted`);
+  return "";
 };
 
 export default sharpResizeImage;
