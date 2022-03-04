@@ -8,16 +8,13 @@ interface sharpResizeAtrs {
   height: number;
 }
 
-// sharp to resize the image
-const sharpResizeImage = async (
-  sharpAtrs: sharpResizeAtrs
-): Promise<null | string> => {
+const sharpResizeImage = async (sharpAtrs: sharpResizeAtrs) => {
   try {
     await sharp(sharpAtrs.fullImagePath)
       .resize(sharpAtrs.width, sharpAtrs.height)
-      .toFormat("jpeg")
+      .jpeg()
       .toFile(sharpAtrs.resizedImagePath);
-    console.log("convert");
+    console.log(`${sharpAtrs.imageName} converted`);
     return "";
   } catch {
     return "Image couldn't be resized";
